@@ -20,6 +20,7 @@ import com.example.ecommerce.model.produit;
 import com.example.ecommerce.model.produit;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
         NavigationView navigationView;
@@ -28,15 +29,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar;
         RecyclerView recyclerView;
 
-        ProduitAdapter adapt;
-
         //Données
-        ArrayList<produit> produit;
+        List<produit> list_produit= new ArrayList<produit>();
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+            recyclerView = (RecyclerView) findViewById(R.id.rv);
+            fillProduitList();
+
+            //Création de l'adapter qui utilisera notre liste
+            ProduitAdapter produitAdapter = new ProduitAdapter((ArrayList<produit>) list_produit, this);
+
+            //On demande au RecycleView d'utiliser notre adapter
+            recyclerView.setAdapter(produitAdapter);
+
+            //On indique que notre RecyclerView utilise un LinearLayoutManager
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             navigationView = findViewById(R.id.navview);
             drawerLayout = findViewById(R.id.drawer);
@@ -50,21 +60,8 @@ public class MainActivity extends AppCompatActivity {
             actionBarDrawerToggle = new ActionBarDrawerToggle(this , drawerLayout,toolbar,R.string.open,R.string.close);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
-//            produit = new ArrayList<>();
-//            produit p = new produit(1,"polo","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
-//
-//
-//            //Création d'une collection d'élèves
-//
-////
-//            //Création de l'adapter qui utilisera notre liste
-//            adapt = new ProduitAdapter(produit, this);
-////
-//            //On lie l'adapter à la liste
-//            recyclerView.setAdapter(adapt);
-//
-//            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-////            when an item is selected from menu
+
+
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,4 +101,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void fillProduitList() {
+            produit p1 = new produit(1,"polo","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+            produit p2 = new produit(2,"nike","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+            produit p3 = new produit(3,"adidas","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
+
+            list_produit.add(p1);
+            list_produit.add(p2);
+            list_produit.add(p3);
+    }
+
+
+
 }
