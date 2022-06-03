@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/allerta</item>
+        <item>@font/belgrano</item>
+        <item>@font/bigshot_one</item>
         <item>@font/montserrat_alternates</item>
     </array>
 </resources>

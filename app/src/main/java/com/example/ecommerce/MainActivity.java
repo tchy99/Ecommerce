@@ -9,12 +9,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.ecommerce.model.produit;
 import com.example.ecommerce.view.ProduitAdapter;
+import com.example.ecommerce.view.RecyclerViewInterface;
 import com.google.android.material.navigation.NavigationView;
 import com.example.ecommerce.model.produit;
 import com.example.ecommerce.model.produit;
@@ -22,7 +24,7 @@ import com.example.ecommerce.model.produit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
         NavigationView navigationView;
         ActionBarDrawerToggle actionBarDrawerToggle;
         DrawerLayout drawerLayout;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             fillProduitList();
 
             //Création de l'adapter qui utilisera notre liste
-            ProduitAdapter produitAdapter = new ProduitAdapter((ArrayList<produit>) list_produit, this);
+            ProduitAdapter produitAdapter = new ProduitAdapter((ArrayList<produit>) list_produit, this,this);
 
             //On demande au RecycleView d'utiliser notre adapter
             recyclerView.setAdapter(produitAdapter);
@@ -113,5 +115,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onClick(int position) {
+        Intent detailIntent = new Intent(MainActivity.this,  DetailActivity.class);
+        detailIntent.putExtra("Nom",  list_produit.get(position).getNom());
+        detailIntent.putExtra("Description",  list_produit.get(position).getDescription());
+        detailIntent.putExtra("Prix",  list_produit.get(position).getPrix());
+        detailIntent.putExtra("Image",  list_produit.get(position).getImage());
+        startActivity(detailIntent);
+    }
 }
