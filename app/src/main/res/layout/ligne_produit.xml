@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
@@ -24,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -33,9 +33,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates"
                 android:text="NomProduit"
-                android:textAlignment="viewStart"
+                android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="14sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,9 +43,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates"
-                android:text="C'est un produit tres apprecie"
-                android:textAlignment="viewStart"
-                android:textSize="16sp" />
+                android:text="C'est un produit tres apprecie par la population Haitienne en Haiti et a  l'etranger j'aime beaucoup Haiti ma terre natale 🇭🇹"
+                android:textAlignment="textStart"
+                android:textSize="8sp" />
 
             <TextView
                 android:id="@+id/prix_produit"
@@ -53,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates"
                 android:text="Price"
-                android:textSize="16sp" />
+                android:textAlignment="textStart"
+                android:textSize="8sp" />
 
             <Button
                 android:id="@+id/add"

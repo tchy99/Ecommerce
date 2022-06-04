@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                         return;
                     }
                     List<Post> posts = response.body();
-                    helper.deleteAllProduit();
-                    for (Post post : posts) {
+
+                    helper.deleteAllProduit();                    for (Post post : posts) {
                         helper.insertProduit(post);
                     }
 
