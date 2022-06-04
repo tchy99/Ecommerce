@@ -48,7 +48,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.ViewHold
         holder.textViewNom.setText(produit.getNom());
         String res = produit.getDescription().substring(0, 40);
         holder.textViewDescription.setText(res + "...");
-        holder.textViewPrix.setText(produit.getPrix());
+        holder.textViewPrix.setText(produit.getPrix()+ " USD");
         Glide.with(this.context).load(produit.getImage()).into(holder.imageView);
 
 

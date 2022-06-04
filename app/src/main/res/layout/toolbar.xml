@@ -2,8 +2,17 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/teal_700"
+    android:background="@color/vert"
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <ImageView
+        android:id="@+id/cart_btn"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="25dp"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_shopping_cart_24" />
 
 </androidx.appcompat.widget.Toolbar>

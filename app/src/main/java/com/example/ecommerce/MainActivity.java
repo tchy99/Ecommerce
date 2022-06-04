@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ecommerce.api.Helper;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         DrawerLayout drawerLayout;
         Toolbar toolbar;
         RecyclerView recyclerView;
+        ImageView imageView;
 
         //Données
         List<produit> list_produit= new ArrayList<produit>();
@@ -101,13 +104,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             //adding customised toolbar
             toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
-
+            imageView = findViewById(R.id.cart_btn);
 
             actionBarDrawerToggle = new ActionBarDrawerToggle(this , drawerLayout,toolbar,R.string.open,R.string.close);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
 
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                }
+            });
 
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override

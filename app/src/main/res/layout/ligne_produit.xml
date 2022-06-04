@@ -51,17 +51,22 @@
                 android:id="@+id/prix_produit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_alternates"
+                android:fontFamily="@font/allerta"
                 android:text="Price"
                 android:textAlignment="textStart"
-                android:textSize="8sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#144F5B"
                 android:fontFamily="@font/allerta"
-                android:text="add to cart" />
+                android:text="add to cart"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="30dp" />
         </LinearLayout>
 
     </LinearLayout>
