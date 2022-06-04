@@ -14,15 +14,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.ecommerce.api.Helper;
+import com.example.ecommerce.api.JsonPlaceHolderApi;
+import com.example.ecommerce.api.Post;
 import com.example.ecommerce.model.produit;
 import com.example.ecommerce.view.ProduitAdapter;
 import com.example.ecommerce.view.RecyclerViewInterface;
 import com.google.android.material.navigation.NavigationView;
-import com.example.ecommerce.model.produit;
-import com.example.ecommerce.model.produit;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
         NavigationView navigationView;
@@ -34,13 +38,54 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //Données
         List<produit> list_produit= new ArrayList<produit>();
 
+        Helper helper;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            recyclerView = (RecyclerView) findViewById(R.id.rv);
-            fillProduitList();
+            helper = new Helper(this);
+            // Retrofit Builder
+            retrofit2.Retrofit retrofit = new retrofit2.Retrofit.Builder()
+                    .baseUrl("https://fakestoreapi.com/")
+                    .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
+                    .build();
+            // Retrofit Service
+            JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
+            Call<List<Post>> call = jsonPlaceHolderApi.getPosts();
+
+            call.enqueue(new Callback<List<Post>>() {
+                @Override
+                public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
+                    if (!response.isSuccessful()) {
+                        return;
+                    }
+                    List<Post> posts = response.body();
+                    helper.deleteAllProduit();
+                    for (Post post : posts) {
+                        helper.insertProduit(post);
+                    }
+
+
+
+                }
+
+
+                @Override
+                public void onFailure(Call<List<Post>> call, Throwable t) {
+
+                }
+            });
+
+
+
+            for (produit produit : helper.getAllProduit()) {
+                list_produit.add(produit);
+            }
+
+
+            recyclerView = (RecyclerView) findViewById(R.id.rv);
             //Création de l'adapter qui utilisera notre liste
             ProduitAdapter produitAdapter = new ProduitAdapter((ArrayList<produit>) list_produit, this,this);
 
@@ -104,15 +149,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     }
 
-    private void fillProduitList() {
-            produit p1 = new produit(1,"polo","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
-            produit p2 = new produit(2,"nike","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
-            produit p3 = new produit(3,"adidas","bel mayo",12,"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg");
 
-            list_produit.add(p1);
-            list_produit.add(p2);
-            list_produit.add(p3);
-    }
 
 
     @Override
@@ -124,4 +161,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         detailIntent.putExtra("Image",  list_produit.get(position).getImage());
         startActivity(detailIntent);
     }
+
+
 }

@@ -15,11 +15,11 @@ public class produit {
     private String prix;
     private String image;
 
-    public produit(int id,String nom, String description, int prix, String image) {
+    public produit(int id, String nom, String description, String prix, String image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
-        this.prix = String.valueOf(prix);
+        this.prix = prix;
         this.image = image;
     }
 

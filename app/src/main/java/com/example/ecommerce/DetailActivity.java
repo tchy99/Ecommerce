@@ -3,16 +3,25 @@ package com.example.ecommerce;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class DetailActivity extends AppCompatActivity {
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+
+import com.example.ecommerce.api.JsonPlaceHolderApi;
+
+public class DetailActivity extends AppCompatActivity  {
     TextView textViewNom;
     TextView textViewPrix;
     TextView textViewDescription;
     ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,4 +44,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
     }
+
+
 }
