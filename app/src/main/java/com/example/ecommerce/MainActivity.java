@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                     }
                     List<Post> posts = response.body();
 
-                    helper.deleteAllProduit();                    for (Post post : posts) {
+                    helper.deleteAllProduit();
+                    for (Post post : posts) {
                         helper.insertProduit(post);
                     }
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             navigationView = findViewById(R.id.navview);
             drawerLayout = findViewById(R.id.drawer);
 
-            //adding customised toolbar
+
             toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             imageView = findViewById(R.id.cart_btn);
@@ -177,11 +178,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onClickButton(int position) {
-        Intent detailIntent = new Intent(MainActivity.this,  CartActivity.class);
-        detailIntent.putExtra("Nom",  list_produit.get(position).getNom());
-        detailIntent.putExtra("Prix",  list_produit.get(position).getPrix());
-        detailIntent.putExtra("Image",  list_produit.get(position).getImage());
-        startActivity(detailIntent);
+        Intent CartIntent = new Intent(MainActivity.this,  CartActivity.class);
+        CartIntent.putExtra("Nom",  list_produit.get(position).getNom());
+        CartIntent.putExtra("Prix",  list_produit.get(position).getPrix());
+        CartIntent.putExtra("Image",  list_produit.get(position).getImage());
+        startActivity(CartIntent);
     }
 
 

@@ -26,13 +26,7 @@ public class Helper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-//    public  void insertProduit() {
-//        SQLiteDatabase db = this.getWritableDatabase();
-////        for (Post post : posts) {
-////            db.execSQL("insert into produit (nom, description, prix, image) values ('" + post.getTitle() + "', '" + post.getDescription() + "', '" + post.getPrice() + "', '" + post.getImage() + "')");
-////        }
-//        db.close();
-//    }
+
 
     public void deleteAllProduit() {
         SQLiteDatabase db = this.getWritableDatabase();
