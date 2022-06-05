@@ -3,6 +3,7 @@ package com.example.ecommerce.view;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +69,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.ViewHold
         public TextView textViewDescription;
         public TextView textViewPrix;
         public View root;
+        public Button button;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -77,8 +79,16 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.ViewHold
             textViewNom = itemView.findViewById(R.id.nom_produit);
             textViewDescription = itemView.findViewById(R.id.description_produit);
             textViewPrix = itemView.findViewById(R.id.prix_produit);
+            button = itemView.findViewById(R.id.add);
             root = itemView.findViewById(R.id.root);
 
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recyclerViewInterface.onClickButton(getAdapterPosition());
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

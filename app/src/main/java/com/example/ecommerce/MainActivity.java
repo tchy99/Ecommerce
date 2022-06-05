@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                    startActivity(intent);
                 }
             });
 
@@ -166,6 +167,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Intent detailIntent = new Intent(MainActivity.this,  DetailActivity.class);
         detailIntent.putExtra("Nom",  list_produit.get(position).getNom());
         detailIntent.putExtra("Description",  list_produit.get(position).getDescription());
+        detailIntent.putExtra("Prix",  list_produit.get(position).getPrix());
+        detailIntent.putExtra("Image",  list_produit.get(position).getImage());
+        startActivity(detailIntent);
+    }
+
+
+
+
+    @Override
+    public void onClickButton(int position) {
+        Intent detailIntent = new Intent(MainActivity.this,  CartActivity.class);
+        detailIntent.putExtra("Nom",  list_produit.get(position).getNom());
         detailIntent.putExtra("Prix",  list_produit.get(position).getPrix());
         detailIntent.putExtra("Image",  list_produit.get(position).getImage());
         startActivity(detailIntent);

@@ -4,5 +4,5 @@ import com.example.ecommerce.model.produit;
 
 public interface RecyclerViewInterface {
     void onClick(int position);
-
+    void onClickButton(int position);
 }
